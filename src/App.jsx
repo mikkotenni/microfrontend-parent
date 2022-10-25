@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Heading } from '@sympaoy/sympatico-component-library'
 import MicroFrontend from './components/microfrontend/MicroFrontend'
@@ -51,7 +52,24 @@ function App() {
       we can pass informtation between applications, since route changes triggered in any
       of them will be reflected in all of them. */}
       {/* Match name with child application's render[name] and unmount[name] functions */}
-      <MicroFrontend history={window.history} host={test27Host} name="test27" />
+      <BrowserRouter>
+        <nav>
+          <Link to="/test27">Test 27</Link>
+        </nav>
+        <Routes>
+          <Route path="/" />
+          <Route
+            path="/test27"
+            element={
+              <MicroFrontend
+                history={window.history}
+                host={test27Host}
+                name="test27"
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </Container>
   )
 }
